@@ -1,0 +1,23 @@
+version: '2'
+services:
+#    test_transaction_app:
+#        container_name: test_transaction_app
+#        image: test_transaction_app
+#        environment:
+#            - POSTGRES_USER=test_transaction
+#            - POSTGRES_PASSWORD=test_transaction
+#            - POSTGRES_DB=test_transaction
+#            - SPRING_DATASOURCE_URL=jdbc:postgresql://test_transaction_postgresql:5432/test_transaction
+#            - NEO4J_DATASOURCE_URL=bolt://test_transaction_neo4j:7687
+#        ports:
+#            - 9090:9090
+    test_transaction_postgresql:
+         container_name: test_transaction_rdbms_db
+         extends:
+            file: postgresql.yml
+            service: test_transaction_postgresql
+    test_transaction_neo4j:
+         container_name: test_transaction_nosql
+         extends:
+             file: neo4j.yml
+             service: test_transaction_neo4j

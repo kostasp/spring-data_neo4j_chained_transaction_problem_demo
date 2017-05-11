@@ -1,0 +1,11 @@
+version: '2'
+services:
+    test_transaction_postgresql:
+        container_name: test_transaction_rdbms_db
+        image: postgres:9.6
+        environment:
+            - POSTGRES_USER=test_transaction
+            - POSTGRES_PASSWORD=test_transaction
+            - POSTGRES_DB=test_transaction
+        ports:
+            - 15003:5432
