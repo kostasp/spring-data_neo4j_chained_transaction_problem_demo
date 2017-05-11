@@ -2,6 +2,14 @@
 ### Related JIRA that mentions this bug.
 https://jira.spring.io/browse/DATAGRAPH-952 <https://jira.spring.io/browse/DATAGRAPH-952
 
+BUG IS APPLICABLE AND TESTED AT
+```
+        neo4j 3.1-enteprise
+		<neo4j.ogm.version>2.1.2</neo4j.ogm.version>
+		<neo4j.java.driver>1.2.1</neo4j.java.driver>
+		<spring.data.neo4j.version>4.2.1.RELEASE</spring.data.neo4j.version>
+````
+
 1. It starts an application
 2. It creates same tables in postgres
 3. It creates a TestNode in neo4j and creates a unique constraint on a property name `uniqueId`
