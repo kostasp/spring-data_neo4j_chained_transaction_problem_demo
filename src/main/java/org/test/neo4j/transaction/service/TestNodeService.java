@@ -27,8 +27,9 @@ public class TestNodeService {
             testNodeRepository.save(sampleNode);
         } catch (ClientException exception) {
             if (exception.getMessage() != null && exception.code().equals("Neo.ClientError.Schema.ConstraintValidationFailed")) {
-                String msg = "=============A node with the same id already exists in neo4j ,uniqueId is:" + sampleNode.getUniqueId();
-                LOGGER.warn(msg, exception);
+                String msg = "=============CATCH EXCEPTION AND CONTINUE EXECUTION , A node with the same id already exists in neo4j ,uniqueId is:" +
+                        sampleNode.getUniqueId();
+                LOGGER.warn(msg);
 
             } else {
                 throw exception;
