@@ -2,7 +2,7 @@ version: '2'
 services:
     test_transaction_neo4j:
         container_name: test_transaction_nosql
-        image: neo4j:3.2-enterprise
+        image: neo4j:3.1-enterprise
         environment:
             - NEO4J_AUTH=neo4j/123456
         ports:
