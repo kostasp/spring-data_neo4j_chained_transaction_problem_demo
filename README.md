@@ -1,6 +1,9 @@
 # This is a sample repository aiming to provide insights on the Spring data Chained Transaction Bug found in Neo4jTransactionManager
+
+### Jira ticket opened for this is : <https://jira.spring.io/browse/DATAGRAPH-995>
+
 ### Related JIRA that mentions this bug.
-https://jira.spring.io/browse/DATAGRAPH-952 <https://jira.spring.io/browse/DATAGRAPH-952
+https://jira.spring.io/browse/DATAGRAPH-952 <https://jira.spring.io/browse/DATAGRAPH-952>
 
 BUG IS APPLICABLE AND TESTED AT
 ```
