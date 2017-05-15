@@ -14,23 +14,26 @@ import org.test.neo4j.transaction.repository.CargoRepository;
  * Created by kp on 5/11/17.
  */
 @Service
-public class WrapperService {
+public class WrapWithTransactionService {
     @Autowired
-    private BoxRepository boxRepository;
+    private BoxService boxService;
     @Autowired
-    private CargoRepository cargoRepository;
+    private CargoService cargoService;
     @Autowired
     private TestNodeService testNodeService;
 
     @Transactional(propagation = Propagation.REQUIRED)
     public void persistAll(String uniqueId, String name) {
+        //1st step will fail because of parallel threads trying to write same node using a unique constraint on uniqueId field.Exception is caught
+        //and code wants to continue.
+        testNodeService.persistTestNode(uniqueId, name);
+        //this one should be written BUT DOES NOT
+        boxService.save(new Box(TestService.BOX_NAME_INSIDE_TRANSACTION_NOT_WRITTEN_SUCCSFULLY_AFTER_NEO4J_FAILURE, "cargo_description_" +
+                uniqueId));
+        //this one should be written BUT DOES NOT
+        cargoService.save(new Cargo(TestService.CARGO_NAME_INSIDE_TRANSACTION_NOT_WRITTEN_SUCCSFULLY_AFTER_NEO4J_FAILURE,
+                "cargo_description_" + uniqueId));
 
-        testNodeService.persistTestNode(uniqueId,name);
-        //this one should be written
-        boxRepository.save(new Box(TestService.BOX_NAME_INSIDE_TRANSACTION_NOT_WRITTEN_SUCCSFULLY_AFTER_NEO4J_FAILURE,"cargo_description_"+uniqueId));
-        //this one should be written
-        cargoRepository.save(new Cargo(TestService.CARGO_NAME_INSIDE_TRANSACTION_NOT_WRITTEN_SUCCSFULLY_AFTER_NEO4J_FAILURE,
-                "cargo_description_"+uniqueId));
 
     }
 
