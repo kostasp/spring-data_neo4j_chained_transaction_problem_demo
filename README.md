@@ -19,8 +19,7 @@ BUG IS APPLICABLE AND TESTED AT
 4. It tries to write in parallel more that one TestNodes with the same value in the property `uniqueId`
 5. An exception is thrown and it is caught and swallowed in the service layer
 6. Then we proceed with to write ENTITY A and ENTITY B to postgres using the chained transaction manager
-7. We try to write another entity ENTITY C outside of the initiated transaction
-8. We check that entity C is written, whether ENTITY A and ENTITY B are not, because of the following error
+7. ENTITY A and ENTITY B (althought in the same transaction) are not written, because of the following error
 
 ```
 71102 --- [       Thread-6] o.s.d.n.t.Neo4jTransactionManager        : Commit exception overridden by rollback exception
